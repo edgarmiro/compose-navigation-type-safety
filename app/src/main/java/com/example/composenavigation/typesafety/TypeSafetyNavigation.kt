@@ -28,7 +28,7 @@ fun TypeSafetyNavigation(modifier: Modifier = Modifier) {
         }
 
         composable<BookDetail>(
-            typeMap = mapOf(typeOf<Book>() to parcelableType<Book>())
+            typeMap = mapOf(typeOf<Book>() to serializableType<Book>())
         ) { backStackEntry ->
             val book = backStackEntry.toRoute<BookDetail>().book
 
