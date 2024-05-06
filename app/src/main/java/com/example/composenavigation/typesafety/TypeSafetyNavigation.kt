@@ -5,7 +5,6 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.toRoute
 import kotlinx.serialization.Serializable
 import kotlin.reflect.typeOf
 
@@ -29,13 +28,8 @@ fun TypeSafetyNavigation(modifier: Modifier = Modifier) {
 
         composable<BookDetail>(
             typeMap = mapOf(typeOf<Book>() to parcelableType<Book>())
-        ) { backStackEntry ->
-            val book = backStackEntry.toRoute<BookDetail>().book
-
-            BookDetailScreen(
-                modifier = modifier,
-                book = book,
-            )
+        ) {
+            BookDetailScreen(modifier = modifier)
         }
     }
 }
