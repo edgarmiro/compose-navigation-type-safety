@@ -10,6 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlin.reflect.typeOf
 
@@ -33,6 +34,10 @@ val BookType = object : NavType<Book>(
 
     override fun parseValue(value: String): Book {
         return Json.decodeFromString<Book>(value)
+    }
+
+    override fun serializeAsValue(value: Book): String {
+        return Json.encodeToString(value)
     }
 
     override fun put(bundle: Bundle, key: String, value: Book) {
