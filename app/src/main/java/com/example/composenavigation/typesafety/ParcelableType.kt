@@ -41,3 +41,17 @@ inline fun <reified T : Any> serializableType(
         bundle.putString(key, json.encodeToString(value))
     }
 }
+
+val bookType = object : NavType<Book>(isNullableAllowed = false) {
+    override fun get(bundle: Bundle, key: String): Book? {
+        return bundle.getString(key)?.let { Json.decodeFromString<Book>(it) }
+    }
+
+    override fun parseValue(value: String) = Json.decodeFromString<Book>(value)
+
+    override fun serializeAsValue(value: Book): String = Json.encodeToString(value)
+
+    override fun put(bundle: Bundle, key: String, value: Book) {
+        bundle.putString(key, Json.encodeToString(value))
+    }
+}

@@ -13,7 +13,6 @@ class BookDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
-    private val bookDetail = savedStateHandle.toRoute<BookDetail>()
-    private val _book = MutableStateFlow(bookDetail.book)
+    private val _book = MutableStateFlow(savedStateHandle.toRoute<BookDetail>().book)
     val book = _book.asStateFlow()
 }
